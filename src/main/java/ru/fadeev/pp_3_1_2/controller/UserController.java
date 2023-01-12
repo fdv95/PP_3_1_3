@@ -22,19 +22,19 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String addNewUser(Model model) {
+    public String getFormToAddNewUser(Model model) {
         model.addAttribute("user", new User());
         return "new";
     }
 
     @PostMapping("/new")
-    public String createNewUser(@ModelAttribute("user") User user) {
+    public String addNewUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/users";
     }
 
     @GetMapping("/edit/{id}")
-    public String editUser(Model model, @PathVariable("id") int id) {
+    public String getFormToUpdateUser(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUserById(id));
         return "edit";
     }
