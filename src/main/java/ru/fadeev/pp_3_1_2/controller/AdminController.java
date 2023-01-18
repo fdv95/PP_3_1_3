@@ -35,7 +35,7 @@ public class AdminController {
         return "new";
     }
 
-    @PostMapping("/new")
+    @PostMapping
     public String addNewUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "new";
@@ -44,8 +44,9 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+
     @GetMapping("/edit/{id}")
-    public String getFormToUpdateUser(Model model, @PathVariable("id") int id) {
+    public String getFormToUpdateUser(Model model, @PathVariable("id") long id) {
         model.addAttribute("user", userService.getUserById(id));
         model.addAttribute("roles", roleService.getAllRoles());
         return "edit";
@@ -53,7 +54,7 @@ public class AdminController {
 
     @PatchMapping("/edit/{id}")
     public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult,
-                             @PathVariable("id") int id) {
+                             @PathVariable("id") long id) {
         if(bindingResult.hasErrors()){
             return "edit";
         }
@@ -62,7 +63,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/edit/{id}")
-    public String deleteUser(@PathVariable("id") int id) {
+    public String deleteUser(@PathVariable("id") long id) {
         userService.deleteUser(id);
         return "redirect:/admin";
     }

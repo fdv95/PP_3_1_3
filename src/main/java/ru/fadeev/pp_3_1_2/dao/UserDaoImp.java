@@ -1,10 +1,6 @@
 package ru.fadeev.pp_3_1_2.dao;
 
 
-//import jakarta.persistence.EntityManager;
-//import jakarta.persistence.PersistenceContext;
-//import jakarta.persistence.TypedQuery;
-
 import org.springframework.stereotype.Repository;
 import ru.fadeev.pp_3_1_2.model.User;
 

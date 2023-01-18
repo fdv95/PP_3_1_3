@@ -33,9 +33,14 @@ public class User implements UserDetails {
     @Size(min=2, message = "Поле должно создержать не менее 2 знаков")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @ManyToMany(fetch = FetchType.LAZY
+//            cascade = {
+//                    CascadeType.PERSIST,
+//                    CascadeType.MERGE}
+            )
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
 
